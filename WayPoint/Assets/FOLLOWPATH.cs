@@ -46,6 +46,13 @@ public class FOLLOWPATH : MonoBehaviour
         currentWP = 0;
     }
 
+    // leva voce para a Industria
+    public void GoToIndustry()
+    {
+        g.AStar(currentNode, wps[9]);
+        currentWP = 0;
+    }
+
     void LateUpdate()
     {
         // tamanho da caminhada
