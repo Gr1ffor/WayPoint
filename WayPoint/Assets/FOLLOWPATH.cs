@@ -5,56 +5,62 @@ using UnityEngine;
 public class FOLLOWPATH : MonoBehaviour
 {
     // objetivo
-    Transform goal;
+    //Transform goal;
     // valor da velocidade
-    public float speed = 5.0f;
+    //public float speed = 5.0f;
     // valor da precisão
-    public float accuracy = 1.0f;
+    //public float accuracy = 1.0f;
     // valor da rotação
-    public float rotSpeed = 2.0f;
+    //public float rotSpeed = 2.0f;
 
     // Indentificar o wpmanager
     public GameObject wpManager;
     // index
     GameObject[] wps;
+    UnityEngine.AI.NavMeshAgent agent;
     // nós
-    GameObject currentNode;
+   // GameObject currentNode;
     // origem
-    int currentWP = 0;
+   // int currentWP = 0;
     // graph
-    Graph g;
+   //Graph g;
 
     void Start()
     {
         // chamando componentes
         wps = wpManager.GetComponent<WPManager>().waypoints;
-        g = wpManager.GetComponent<WPManager>().graph;
-        currentNode = wps[0];
+        agent = this.GetComponent<UnityEngine.AI.NavMeshAgent>();
+        //g = wpManager.GetComponent<WPManager>().graph;
+        //currentNode = wps[0];
     }
 
     // leva voce para o Heliporto
     public void GoToHeli()
     {
-        g.AStar(currentNode, wps[1]);
-        currentWP = 0;
+        agent.SetDestination(wps[1].transform.position);
+        //g.AStar(currentNode, wps[1]);
+        //currentWP = 0;
     }
 
     // leva voce para a Ruina
     public void GoToRuin()
     {
-        g.AStar(currentNode, wps[6]);
-        currentWP = 0;
+        agent.SetDestination(wps[6].transform.position);
+        //g.AStar(currentNode, wps[6]);
+        //currentWP = 0;
     }
 
     // leva voce para a Industria
     public void GoToIndustry()
     {
-        g.AStar(currentNode, wps[9]);
-        currentWP = 0;
+        agent.SetDestination(wps[9].transform.position);
+        //g.AStar(currentNode, wps[9]);
+        //currentWP = 0;
     }
 
     void LateUpdate()
     {
+       /*  ================ CODIGO DO WAYPOINT =================
         // tamanho da caminhada
         if (g.getPathLength() == 0 || currentWP == g.getPathLength())
             return;
@@ -77,6 +83,6 @@ public class FOLLOWPATH : MonoBehaviour
             this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * rotSpeed);
         }
 
-        transform.Translate(0, 0, speed * Time.deltaTime);
+        transform.Translate(0, 0, speed * Time.deltaTime);*/
     }
 }
